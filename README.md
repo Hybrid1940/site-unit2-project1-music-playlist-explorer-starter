@@ -2,7 +2,7 @@
 
 ## Unit Assignment: Music Playlist Explorer
 
-Submitted by: **NAME**
+Submitted by: **Mahesh Bachu**
 
 Estimated time spent: **#** hours spent in total
 
