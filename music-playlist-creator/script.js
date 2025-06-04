@@ -9,7 +9,7 @@ function openModal(festival) {
 }
 
 span.onclick = function() {
-   modal.style.display = "none";
+   modal.style.display = "none";d
 }
 window.onclick = function(event) {
    if (event.target == modal) {
