@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Music Playlist Explorer</title>
+    <title> Music Playlist Explorer</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     
     <link rel="stylesheet" href="style.css">
@@ -12,16 +12,53 @@
 <body>
     <header>
         <!-- Your header content here -->
+         <h3>Music Playlist Explorer</h3>
     </header>
 
     <main> 
+        <!-- Modal Structure -->
         <!-- Your main content here -->
+        <!--Playlist-->
+        <section id="playListGrid">
+            
+        </section>
+        <!--Modal for playlists-->
+        <div id="playListModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img id="playListImage" src="" alt="Festival Image">
+                <h1 id="playListName">Playlist 1</h1>
+                <section id="songs">
+                    <div id="song1" class="modalSong">
+                        <img src="" class="songImage">
+                        <h3>Song Title</h3>
+                        <h4>Artist Name</h4>
+                        <h4>Album Name</h4>
+                        <h4>0:00</h4>
+                    </div>
+                    <div id="song1" class="modalSong">
+                        <img src="" class="songImage">
+                        <h3>Song Title</h3>
+                        <h4>Artist Name</h4>
+                        <h4>Album Name</h4>
+                        <h4>0:00</h4>
+                    </div>
+                    <div id="song1" class="modalSong">
+                        <img src="" class="songImage">
+                        <h3>Song Title</h3>
+                        <h4>Artist Name</h4>
+                        <h4>Album Name</h4>
+                        <h4>0:00</h4>
+                    </div>
+                </section>
+            </div>
+        </div>
     </main>
 
     <footer>
         <!-- Your footer content here -->
     </footer>
-    <script src="data/data.js"></script>
+    <script src="data\data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
