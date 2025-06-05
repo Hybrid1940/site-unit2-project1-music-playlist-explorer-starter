@@ -13,6 +13,7 @@
     <header>
         <!-- Your header content here -->
          <h3>Music Playlist Explorer</h3>
+         <a href="featured.html">Featured Playlist!</a>
     </header>
 
     <main> 
@@ -26,10 +27,11 @@
         </div>
         <!--Modal for playlists-->
         <div id="playListModal" class="modal">
-            <div class="modal-content" style="box-shadow: 10px;">
+            <div class="modal-content" style="box-shadow: 10px; width: 50%;">
                 <span class="close">&times;</span>
                 <img id="playListImage" src="" style="max-width:75px; width:50%" alt="Playlist Image">
                 <br>
+                <h3 id="playListAuthor"></h3>
                 <button id="shuffle">Shuffle</button>
                 <h1 id="playListName"></h1>
                 <section id="songs">

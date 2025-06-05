@@ -6,6 +6,7 @@ const span = document.getElementsByClassName("close")[0];
 function openModal(playlist) {
     console.log(playlist);
    document.getElementById('playListName').innerText = playlist.playlist_name;
+   document.getElementById('playListAuthor').innerText = "Made by " + playlist.playlist_author;
    document.getElementById('playListImage').src = playlist.playlistArt;
    for(const song in playlist.songs){
         const newSong = document.createElement('div');
