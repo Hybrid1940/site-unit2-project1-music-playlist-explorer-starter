@@ -33,12 +33,12 @@ body {
     align-items: center;
 }
 
-
-
-
-.likes{
-    display: flex;
+.likes:hover{
+    color: purple;
+    font-size: 18px;
 }
+
+
 footer{
     background-color: bisque;
 }
@@ -61,6 +61,7 @@ footer{
 }
 .modal-content {
    background-color: #fefefe;
+   box-shadow: 10px 10px 10px;
    margin: auto; /* 15% from the top and centered */
    padding: 20px;
    border: 1px solid #888;

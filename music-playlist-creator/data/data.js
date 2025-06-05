@@ -8,14 +8,20 @@ let playlists = [
 			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze", "John Macentire", "sacared", "4:52"], 
 			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze", "John Macentire", "sacared", "4:52"],
 			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze", "John Macentire", "sacared", "4:52"]],
-		"likes": 12,
+		"likes": 13,
+		"likesColor": "black"
 	},
 	{
 		"playlistID": 3,
 		"playlist_name": "Chill1",
 		"playlist_author": "Joe",
 		"playlistArt": "assets/img/playlist.png",
+		"songs": [
+			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze", "John Macentire", "sacared", "4:52"], 
+			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze", "John Macentire", "sacared", "4:52"],
+			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze", "John Macentire", "sacared", "4:52"]],
 		"likes": 13,
+		"likesColor": "black"
 	},
 	{
 		"playlistID": 1,
@@ -23,6 +29,7 @@ let playlists = [
 		"playlist_author": "Joe",
 		"playlistArt": "assets/img/playlist.png",
 		"likes": 14,
+		"likesColor": "black",
 		"songs": ["Cool Breeze", "ABCs"]
 	},
 	{
@@ -31,6 +38,7 @@ let playlists = [
 		"playlist_author": "Joes",
 		"playlistArt": "assets/img/playlist.png",
 		"likes": 15,
+		"likesColor": "black",
 		"songs": ["Cool Breeze", "ABCs"]
 	},
 	{
@@ -39,6 +47,7 @@ let playlists = [
 		"playlist_author": "Joes",
 		"playlistArt": "assets/img/playlist.png",
 		"likes": 15,
+		"likesColor": "black",
 		"songs": ["Cool Breeze", "ABCs"]
 	},
 	{
@@ -47,6 +56,7 @@ let playlists = [
 		"playlist_author": "Joes",
 		"playlistArt": "assets/img/playlist.png",
 		"likes": 15,
+		"likesColor": "black",
 		"songs": ["Cool Breeze", "ABCs"]
 	},
 	{
@@ -55,6 +65,7 @@ let playlists = [
 		"playlist_author": "Joes",
 		"playlistArt": "assets/img/playlist.png",
 		"likes": 15,
+		"likesColor": "black",
 		"songs": ["Cool Breeze", "ABCs"]
 	},
 ]
