@@ -5,9 +5,11 @@ let playlists = [
 		"playlist_author": "Joe",
 		"playlistArt": "assets/img/945cb857460591da1840c1097a7f8917.png",
 		"songs": [
-			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze", "John Macentire", "sacared", "4:52"], 
-			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze", "John Macentire", "sacared", "4:52"],
-			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze", "John Macentire", "sacared", "4:52"]],
+			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze1", "John Macentire1", "sacared", "4:52"], 
+			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze2", "John Macentire2", "sacared", "4:52"],
+			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze3", "John Macentire3", "sacared", "4:52"],
+			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze4", "John Macentire3", "sacared", "4:52"],
+			["assets/img/945cb857460591da1840c1097a7f8917.png", "Cool Breeze5", "John Macentire3", "sacared", "4:52"]],
 		"likes": 13,
 		"likesColor": "black"
 	},

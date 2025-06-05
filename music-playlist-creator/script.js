@@ -7,8 +7,7 @@ function openModal(playlist) {
     console.log(playlist);
    document.getElementById('playListName').innerText = playlist.playlist_name;
    document.getElementById('playListImage').src = playlist.playlistArt;
-
-    for(const song in playlist.songs){
+   for(const song in playlist.songs){
         const newSong = document.createElement('div');
         newSong.className = "modalSong"
         newSong.innerHTML = `<div class="modalSongImgContainer">
@@ -22,7 +21,25 @@ function openModal(playlist) {
                         </div>`
         document.getElementById('songs').appendChild(newSong);
     }
-
+   document.getElementById("shuffle").addEventListener("click", () => {
+        shuffle(playlist.songs);
+        console.log(playlist.songs)
+        document.getElementById('songs').innerHTML="";
+        for(const song in playlist.songs){
+            const newSong = document.createElement('div');
+            newSong.className = "modalSong"
+            newSong.innerHTML = `<div class="modalSongImgContainer">
+                                <img width="75x" height="75x" src="${playlist.songs[song][0]}" class="songImage">
+                            </div>
+                            <div class="songDetails">
+                                <h3>${playlist.songs[song][1]}</h3>
+                                <p>${playlist.songs[song][2]}</p>
+                                <p>${playlist.songs[song][3]}</p>
+                                <p>${playlist.songs[song][4]}</p>
+                            </div>`
+            document.getElementById('songs').appendChild(newSong);
+        }
+    });
    modal.style.display = "flex";
 }
 
@@ -88,6 +105,15 @@ const loadPlaylists = () =>{
         });
         container.appendChild(el);
         //stop propogation to stop modal from appearing
+    }
+}
+
+function shuffle(songs){
+    for(let i = 0; i <songs.length; i++){
+        let j = Math.floor(Math.random() * (i + 1));
+        var temp = songs[i];
+        songs[i] = songs[j];
+        songs[j] = temp;
     }
 }
 

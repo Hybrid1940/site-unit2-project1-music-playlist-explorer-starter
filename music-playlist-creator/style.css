@@ -59,6 +59,12 @@ footer{
    overflow: auto; /* Enable scroll if needed */
    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+#shuffle{
+    background-color: #bf5700;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 .modal-content {
    background-color: #fefefe;
    box-shadow: 10px 10px 10px;
