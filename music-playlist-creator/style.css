@@ -11,10 +11,28 @@ body {
     padding: 0;
     background-color: #bf5700;
 }
+#playListGridContainer{
+    display: flex;
+    justify-content: center;
+}
+
+
 #playListGrid{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
+    width: 60%;
+    background-color: #ffffff;
+    color: black;
+    border-radius: 8px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
+.playlist{
+    display: flex;
+    align-items: center;
+}
+
 
 
 
@@ -26,6 +44,9 @@ footer{
 }
 
 /* CSS for Modal */
+#playListModal{
+    display: none; /* Hidden by default */
+}
 .modal {
    display: none; /* Hidden by default */
    position: fixed; /* Stay in place */
@@ -40,10 +61,22 @@ footer{
 }
 .modal-content {
    background-color: #fefefe;
-   margin: 15% auto; /* 15% from the top and centered */
+   margin: auto; /* 15% from the top and centered */
    padding: 20px;
    border: 1px solid #888;
    width: 80%; /* Could be more or less, depending on screen size */
+}
+.modalSong {
+    margin-top: 5px; 
+    margin-bottom: 5px;
+    border: black solid 3px;
+    display: flex;
+}
+.modalSongImgContainer{
+    display: flex; 
+    align-items: center; 
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .close {
    color: #aaa;
