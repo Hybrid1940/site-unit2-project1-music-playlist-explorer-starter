@@ -152,8 +152,8 @@ Completing the sort was a bit difficult, since we went over map, filter, and sor
 I might have added in the edit song feature. since it said "some or all" of the edit functions needed to be done I focused on other things and hoped to get the points off of the 2 I had implimented.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
+It was actually pretty difficult to record. I eventually just ended up looking at all of the requirements and pausing for every piece I wanted to demo. We got there eventually though :)
 
-My project demo we
 
 ### Open-source libraries used
 
