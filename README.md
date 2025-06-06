@@ -132,7 +132,14 @@ Deployed Application (**required**): [Music Playlist Explorer Deployed Site](htt
 
 ### Walkthrough Video
 
-[WalkThrough Video](https://www.loom.com/share/501bbab44ca54166b865fc54af7d35b0)
+<div>
+    <a href="https://www.loom.com/share/501bbab44ca54166b865fc54af7d35b0">
+      <p>Project 1 Video - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/501bbab44ca54166b865fc54af7d35b0">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/501bbab44ca54166b865fc54af7d35b0-b650a516e0d69d72-full-play.gif">
+    </a>
+  </div>
 
 ### Reflection
 
