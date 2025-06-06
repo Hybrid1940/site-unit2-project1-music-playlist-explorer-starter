@@ -236,14 +236,13 @@ clear.addEventListener("click", function(){
 searchButton.addEventListener("click", function(){
     event.preventDefault();
     const tiles = Array.from(document.getElementsByClassName('playList'));
-
+    grid.innerHTML = "";
     const newTiles = [];
     for(tile in tiles){
             if(tiles[tile].innerHTML.includes(searchBar.value)){
-
+                grid.appendChild(tiles[tile]);
             }
     }
 
     searchBar.value = "";
-    grid.innerHTML = "";
 })
