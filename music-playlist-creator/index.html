@@ -11,6 +11,7 @@
 </head>
 <body>
     <header>
+        <!--For the sorting, get all elements by class and move around the arrangment based on that-->
         <!-- Your header content here -->
          <h3>Music Playlist Explorer</h3>
          <a href="featured.html">Featured Playlist!</a>
@@ -21,8 +22,20 @@
             <textarea id="newPlaylistAuthor" name="newPlaylistAuthor" required></textarea>
             <label for="newPlaylistImage">Playlist Image:</label>
             <textarea id="newPlaylistImage" name="newPlaylistImage" required></textarea>
-            <button type="submit" onClick="handleReviewSubmit(event)">Post Reviw</button>
+            <button type="submit" onClick="handleReviewSubmit(event)">Add Playlist</button>
         </form>
+        <form id="playListForm">
+            <label for="search">Search Playlist (Author || Name):</label>
+            <textarea id="search" name="search" required></textarea>
+            <button id="searchButton" type="submit">Search</button>
+            <button id="clear">Clear</button>
+        </form>
+        <label for="sorts">Sort: </label>
+        <select name="sorts" id="sorts">
+            <option value="alphabet">Alphabet</option>
+            <option value="likes">Likes (Decending)</option>
+            <option value="date">Date Added</option>
+        </select>
     </header>
 
     <main> 
@@ -52,7 +65,7 @@
                     <textarea id="songLength" name="songLength" required></textarea>
                     <label for="songVibe">Song Vibe:</label>
                     <textarea id="songVibe" name="songVibe" required></textarea>
-                    <button type="submit" onClick="handleSongSubmit(event)">Post Reviw</button>
+                    <button type="submit" onClick="handleSongSubmit(event)">Add Song</button>
                 </form>
                 <button id="shuffle">Shuffle</button>
                 <h1 id="playListName"></h1>

@@ -57,6 +57,19 @@ window.onclick = function(event) {
    }
 }
 
+const stopProp = (event) => {
+    event.stopPropagation();
+}
+
+const editPlaylistName = (event) => {
+    console.log("hello");
+    event.stopPropagation();
+}
+const editPlaylistAuthor = (event) => {
+    console.log("hello");
+    event.stopPropagation();
+}
+
 //Code to create playlist
 const createPlaylist = (playlist) => {
     const playlistElement = document.createElement('div');
@@ -73,8 +86,18 @@ const createPlaylist = (playlist) => {
     playlistElement.innerHTML= `
         <button class = "exit">X</button>
         <img style="max-width:75px; width:50%" src="${playlist.playlistArt}">
-        <h4>${playlist.playlist_name}</h3>
-        <p> Created by ${playlist.playlist_author}</p>
+        <h4 class="playListName">${playlist.playlist_name}</h3>
+        <form id="editNameForm">
+            <label for="editName">Edit Name:</label>
+            <textarea id="editName" name="editName" onClick=stopProp(event) required></textarea>
+            <button type="submit" onClick=editPlaylistName(event)>Change Name</button>
+        </form>
+        <p class="playListAuthor"> Created by ${playlist.playlist_author}</p>
+        <form id="editAuthorForm">
+            <label for="editAuthor">Edit Name:</label>
+            <textarea id="editAuthor" name="editAuthor" onClick=stopProp(event) required></textarea>
+            <button type="submit" onClick="editPlaylistAuthor(event)">Change Author</button>
+        </form>
     <div>
         <p class = "likes" style = "color: ${playlist.likesColor}">&#x2665  <span class = "likeCount">${playlist.likes}</span></p>
     </div>`
@@ -197,3 +220,30 @@ const handleReviewSubmit = (event) =>{
 document.addEventListener("DOMContentLoaded", () => {
     loadPlaylists();
 });
+
+
+
+//Clear Button Functionality
+let searchBar =  document.getElementById("search");
+let clear =  document.getElementById("clear");
+let searchButton =  document.getElementById("searchButton");
+let grid =  document.getElementById("playListGrid");
+
+clear.addEventListener("click", function(){
+    searchBar.value = "";
+})
+
+searchButton.addEventListener("click", function(){
+    event.preventDefault();
+    const tiles = Array.from(document.getElementsByClassName('playList'));
+
+    const newTiles = [];
+    for(tile in tiles){
+            if(tiles[tile].innerHTML.includes(searchBar.value)){
+
+            }
+    }
+
+    searchBar.value = "";
+    grid.innerHTML = "";
+})
