@@ -3,8 +3,8 @@
 const modal = document.getElementById("playListModal");
 const span = document.getElementsByClassName("close")[0];
 
+//method to open modal
 function openModal(playlist) {
-    console.log(playlist);
    document.getElementById('playListName').innerText = playlist.playlist_name;
    document.getElementById('playListAuthor').innerText = "Made by " + playlist.playlist_author;
    document.getElementById('playListImage').src = playlist.playlistArt;
@@ -24,7 +24,7 @@ function openModal(playlist) {
     }
    document.getElementById("shuffle").addEventListener("click", () => {
         shuffle(playlist.songs);
-        console.log(playlist.songs)
+        console.log(playlist.songs[1])
         document.getElementById('songs').innerHTML="";
         for(const song in playlist.songs){
             const newSong = document.createElement('div');
@@ -44,19 +44,20 @@ function openModal(playlist) {
    modal.style.display = "flex";
 }
 
+//close modal
 span.onclick = function() {
    modal.style.display = "none";
    document.getElementById('songs').innerHTML = "";
 
 }
+//close modal outside of zone
 window.onclick = function(event) {
    if (event.target == modal) {
       modal.style.display = "none";
    }
 }
 
-//Code for Playlist rendering
-
+//Code to create playlist
 const createPlaylist = (playlist) => {
     const playlistElement = document.createElement('div');
     playlistElement.className = 'playList';
@@ -70,20 +71,27 @@ const createPlaylist = (playlist) => {
     playlistElement.style.border = "solid #bf5700 3px"
 
     playlistElement.innerHTML= `
-        <img style="max-width:75px; width:50%" src="${playlists[playlist].playlistArt}">
-        <h4>${playlists[playlist].playlist_name}</h3>
-        <p> Created by ${playlists[playlist].playlist_author}</p>
+        <button class = "exit">X</button>
+        <img style="max-width:75px; width:50%" src="${playlist.playlistArt}">
+        <h4>${playlist.playlist_name}</h3>
+        <p> Created by ${playlist.playlist_author}</p>
     <div>
-        <p class = "likes" style = "color: ${playlists[playlist].likesColor}">&#x2665  <span class = "likeCount">${playlists[playlist].likes}</span></p>
+        <p class = "likes" style = "color: ${playlist.likesColor}">&#x2665  <span class = "likeCount">${playlist.likes}</span></p>
     </div>`
     ;
+
+    let deleteButton = playlistElement.querySelector(".exit")
+        deleteButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            playlistElement.style.display = "none";
+        });
     return playlistElement;
 }
 
 const loadPlaylists = () =>{
     const container = document.querySelector('#playListGrid');
     for(const playlist in playlists){
-        const el = createPlaylist(playlist);
+        const el = createPlaylist(playlists[playlist]);
 
         el.addEventListener("click", () => {
             openModal(playlists[playlist]);
@@ -104,6 +112,13 @@ const loadPlaylists = () =>{
                 likeButton.querySelector(".likeCount").innerHTML = playlists[playlist].likes;
             }
         });
+
+        let deleteButton = el.querySelector(".exit")
+        deleteButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            el.style.display = "none";
+        });
+
         container.appendChild(el);
         //stop propogation to stop modal from appearing
     }
@@ -116,6 +131,67 @@ function shuffle(songs){
         songs[i] = songs[j];
         songs[j] = temp;
     }
+}
+
+const handleSongSubmit = (event) =>{
+    event.preventDefault();
+    const songName = document.querySelector('#songName');
+    const artist = document.querySelector('#songAuthor');
+    const songImage = document.querySelector('#songImage');
+    const songLength = document.querySelector('#songLength');
+    const songVibe = document.querySelector('#songVibe');
+
+    const newSong = document.createElement('div');
+    newSong.className = "modalSong"
+    newSong.innerHTML = `<div class="modalSongImgContainer">
+                        <img width="75x" height="75x" src="${songImage.value}" class="songImage">
+                    </div>
+                    <div class="songDetails">
+                        <h3>${songName.value}</h3>
+                        <p>${artist.value}</p>
+                        <p>${songLength.value}</p>
+                        <p>${songVibe.value}</p>
+                    </div>`
+    document.getElementById('songs').appendChild(newSong);
+}
+
+const handleReviewSubmit = (event) =>{
+    event.preventDefault();
+
+    const playListName = document.querySelector('#newPlaylistTitle');
+    const playListAuthor = document.querySelector('#newPlaylistAuthor');
+    const playListImage = document.querySelector('#newPlaylistImage');
+    let playList = {
+        playlistID: 3,
+        playlist_name: playListName.value,
+        playlist_author: playListAuthor.value,
+        playlistArt: playListImage.value,
+        songs: "",
+        likes: 0,
+        likesColor: "black"
+    };
+    const newPlaylist = createPlaylist(playList);
+    newPlaylist.addEventListener("click", () => {
+        openModal(playList);
+    });
+
+    let likeButton = newPlaylist.querySelector(".likes");
+    likeButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if(playList.likesColor === "black"){
+            playList.likes +=1;
+            playList.likesColor = "red";
+            likeButton.style.color = playList.likesColor;
+            likeButton.querySelector(".likeCount").innerHTML = playList.likes;
+        }else if(playList.likesColor === "red") {
+            playList.likes -=1;
+            playList.likesColor = "black";
+            likeButton.style.color = playList.likesColor;
+            likeButton.querySelector(".likeCount").innerHTML = playList.likes;
+        }
+    });
+    const reviewList = document.querySelector('#playListGrid');
+    reviewList.appendChild(newPlaylist);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
