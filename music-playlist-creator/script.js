@@ -2,6 +2,7 @@
 // JavaScript for Opening and Closing the Modal
 const modal = document.getElementById("playListModal");
 const span = document.getElementsByClassName("close")[0];
+let playListIDTrack;
 
 //method to open modal
 function openModal(playlist) {
@@ -61,10 +62,6 @@ const stopProp = (event) => {
     event.stopPropagation();
 }
 
-const editPlaylistName = (event) => {
-    console.log("hello");
-    event.stopPropagation();
-}
 const editPlaylistAuthor = (event) => {
     console.log("hello");
     event.stopPropagation();
@@ -85,29 +82,46 @@ const createPlaylist = (playlist) => {
 
     playlistElement.innerHTML= `
         <button class = "exit">X</button>
+        <p class="ID" style="display:none">${playlist.playlistID}</p>
         <img style="max-width:75px; width:50%" src="${playlist.playlistArt}">
         <h4 class="playListName">${playlist.playlist_name}</h3>
         <form id="editNameForm">
             <label for="editName">Edit Name:</label>
-            <textarea id="editName" name="editName" onClick=stopProp(event) required></textarea>
-            <button type="submit" onClick=editPlaylistName(event)>Change Name</button>
+            <textarea id="editName" class="editName" name="editName" onClick=stopProp(event) required></textarea>
+            <button type="submit" class="changeName">Change Name</button>
         </form>
         <p class="playListAuthor"> Created by ${playlist.playlist_author}</p>
         <form id="editAuthorForm">
             <label for="editAuthor">Edit Name:</label>
-            <textarea id="editAuthor" name="editAuthor" onClick=stopProp(event) required></textarea>
-            <button type="submit" onClick="editPlaylistAuthor(event)">Change Author</button>
+            <textarea id="editAuthor" class="editAuthor" name="editAuthor" onClick=stopProp(event) required></textarea>
+            <button type="submit" class = "changeAuthor">Change Author</button>
         </form>
     <div>
         <p class = "likes" style = "color: ${playlist.likesColor}">&#x2665  <span class = "likeCount">${playlist.likes}</span></p>
     </div>`
     ;
 
-    let deleteButton = playlistElement.querySelector(".exit")
-        deleteButton.addEventListener("click", (event) => {
-            event.stopPropagation();
-            playlistElement.style.display = "none";
-        });
+    let changeName = playlistElement.querySelector(".changeName");
+    changeName.addEventListener("click", (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        let editName =  playlistElement.querySelector(".editName");
+        playlistElement.querySelector(".playListName").innerHTML = editName.value;
+    })
+
+    let changeAuthor = playlistElement.querySelector(".changeAuthor");
+    changeAuthor.addEventListener("click", (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        let editAuthor =  playlistElement.querySelector(".editAuthor");
+        playlistElement.querySelector(".playListAuthor").innerHTML = "Created by " + editAuthor.value;
+    })
+
+    let deleteButton = playlistElement.querySelector(".exit");
+    deleteButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        playlistElement.style.display = "none";
+    });
     return playlistElement;
 }
 
@@ -120,7 +134,7 @@ const loadPlaylists = () =>{
     container.appendChild(og)
     for(const playlist in playlists){
         const el = createPlaylist(playlists[playlist]);
-
+        playListIDTrack = playlists[playlist].playlistID;
         el.addEventListener("click", () => {
             openModal(playlists[playlist]);
         });
@@ -150,6 +164,7 @@ const loadPlaylists = () =>{
         container.appendChild(el);
         //stop propogation to stop modal from appearing
     }
+
 }
 
 function shuffle(songs){
@@ -189,8 +204,9 @@ const handleReviewSubmit = (event) =>{
     const playListName = document.querySelector('#newPlaylistTitle');
     const playListAuthor = document.querySelector('#newPlaylistAuthor');
     const playListImage = document.querySelector('#newPlaylistImage');
+    playListIDTrack++;
     let playList = {
-        playlistID: 3,
+        playlistID: playListIDTrack,
         playlist_name: playListName.value,
         playlist_author: playListAuthor.value,
         playlistArt: playListImage.value,
@@ -233,6 +249,8 @@ let searchBar =  document.getElementById("search");
 let clear =  document.getElementById("clear");
 let searchButton =  document.getElementById("searchButton");
 let grid =  document.getElementById("playListGrid");
+let sortButton = document.getElementById("sort");
+let sortValue = document.getElementById("sortVals");
 
 clear.addEventListener("click", function(){
     searchBar.value = "";
@@ -265,4 +283,41 @@ searchButton.addEventListener("click", function(){
                 grid.appendChild(tiles[tile]);
             }
     }
+})
+
+sortButton.addEventListener("click", function(){ 
+    event.preventDefault();
+    const tiles = Array.from(document.getElementsByClassName('playList'));
+    grid.innerHTML = "";
+    if(sortVals.value==="alphabet"){
+        console.log(sortVals.value);
+        tiles.sort((a,b) => {
+            const aName = a.querySelector(".playListName").innerHTML;
+            const bName = b.querySelector(".playListName").innerHTML;
+            if(aName < bName) return -1;
+            if(aName > bName) return 1;
+            return 0;
+        });
+    }else if(sortVals.value==="likes"){
+        console.log(sortVals.value);
+        tiles.sort((a,b) => {
+            const aName = a.querySelector(".likes").innerHTML;
+            const bName = b.querySelector(".likes").innerHTML;
+            if(aName > bName) return -1;
+            if(aName < bName) return 1;
+            return 0;
+        });
+    }else if(sortVals.value="date"){
+        tiles.sort((a,b) => {
+            const aName = a.querySelector(".ID").innerHTML;
+            const bName = b.querySelector(".ID").innerHTML;
+            if(aName < bName) return -1;
+            if(aName > bName) return 1;
+            return 0;
+        });
+    }
+    for(tile in tiles){
+        grid.appendChild(tiles[tile]);
+    }
+
 })

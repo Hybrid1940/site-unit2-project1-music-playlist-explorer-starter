@@ -39,7 +39,7 @@ let playlists = [
     ["assets/img/945cb857460591da1840c1097a7f8917.png", "Get You", "Daniel Caesar", "soulful", "3:21"],
     ["assets/img/945cb857460591da1840c1097a7f8917.png", "Lost in Japan", "Shawn Mendes", "acoustic", "3:20"]
   ],
-  "likes": 42,
+  "likes": 41,
   "likesColor": "black"
 },
 {
@@ -78,7 +78,7 @@ let playlists = [
     ["assets/img/945cb857460591da1840c1097a7f8917.png", "Can't Stop the Feeling!", "Justin Timberlake", "pop", "3:56"],
     ["assets/img/945cb857460591da1840c1097a7f8917.png", "Happy", "Pharrell Williams", "upbeat", "3:53"]
   ],
-  "likes": 50,
+  "likes": 51,
   "likesColor": "black"
 },
 ]

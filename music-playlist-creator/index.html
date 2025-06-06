@@ -30,12 +30,15 @@
             <button id="searchButton" type="submit">Search</button>
             <button id="clear">Clear</button>
         </form>
-        <label for="sorts">Sort: </label>
-        <select name="sorts" id="sorts">
-            <option value="alphabet">Alphabet</option>
-            <option value="likes">Likes (Decending)</option>
-            <option value="date">Date Added</option>
-        </select>
+        <form id="sortForm">
+            <label for="sortVals">Sort: </label>
+            <select name="sortVals" id="sortVals">
+                <option value="alphabet">Alphabet</option>
+                <option value="likes">Likes (Decending)</option>
+                <option value="date">Date Added</option>
+            </select>
+            <button id="sort">Sort</button>
+        </form>
     </header>
 
     <main> 
