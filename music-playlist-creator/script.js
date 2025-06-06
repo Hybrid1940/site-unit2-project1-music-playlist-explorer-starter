@@ -113,6 +113,11 @@ const createPlaylist = (playlist) => {
 
 const loadPlaylists = () =>{
     const container = document.querySelector('#playListGrid');
+
+    let og = document.createElement('p');
+    og.style.display='none';
+    og.innerHTML = "OG"
+    container.appendChild(og)
     for(const playlist in playlists){
         const el = createPlaylist(playlists[playlist]);
 
@@ -231,7 +236,24 @@ let grid =  document.getElementById("playListGrid");
 
 clear.addEventListener("click", function(){
     searchBar.value = "";
+    if(!grid.innerHTML.includes('OG')){
+        grid.innerHTML = "";
+        loadPlaylists();
+    }
+
 })
+
+function searchTiles(){
+    event.preventDefault();
+    const tiles = Array.from(document.getElementsByClassName('playList'));
+    grid.innerHTML = "";
+    const newTiles = [];
+    for(tile in tiles){
+            if(tiles[tile].innerHTML.includes(searchBar.value)){
+                grid.appendChild(tiles[tile]);
+            }
+    }
+}
 
 searchButton.addEventListener("click", function(){
     event.preventDefault();
@@ -243,6 +265,4 @@ searchButton.addEventListener("click", function(){
                 grid.appendChild(tiles[tile]);
             }
     }
-
-    searchBar.value = "";
 })
