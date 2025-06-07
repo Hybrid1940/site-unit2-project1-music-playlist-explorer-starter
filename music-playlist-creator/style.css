@@ -1,4 +1,5 @@
 
+/* Base Coloring and styling for the header & body */
 header {
     background-color: #bf5700;
     color: white;
@@ -11,12 +12,13 @@ body {
     padding: 0;
     background-color: #bf5700;
 }
+
+/* styling for playList grid, which will hold the actual grid*/
 #playListGridContainer{
     display: flex;
     justify-content: center;
 }
-
-
+/* styling for playList Grid Container which will hold all playlist tiles */
 #playListGrid{
     display: flex;
     flex-wrap: wrap;
@@ -28,25 +30,24 @@ body {
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
+
+/*Actual playList tile styling*/
 .playlist{
     display: flex;
     align-items: center;
 }
 
+/* likes growing hover */
 .likes:hover{
     color: purple;
     font-size: 18px;
-}
-
-
-footer{
-    background-color: rgb(126, 109, 87);
 }
 
 /* CSS for Modal */
 #playListModal{
     display: none; /* Hidden by default */
 }
+/* Modal styling */
 .modal {
    display: none; /* Hidden by default */
    position: fixed; /* Stay in place */
@@ -59,12 +60,14 @@ footer{
    overflow: auto; /* Enable scroll if needed */
    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+/*shuffle button styling */
 #shuffle{
     background-color: #bf5700;
     border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+/*styling for the actual modal that will hold songs */
 .modal-content {
    background-color: #fefefe;
    box-shadow: 10px 10px 10px;
@@ -73,6 +76,7 @@ footer{
    border: 1px solid #888;
    width: 80%; /* Could be more or less, depending on screen size */
 }
+/* individual modalSong styling */
 .modalSong {
     margin-top: 5px; 
     margin-bottom: 5px;
@@ -85,6 +89,7 @@ footer{
     margin-left: 20px;
     margin-right: 20px;
 }
+/*close button for modal */
 .close {
    color: #aaa;
    float: right;

@@ -1,55 +1,136 @@
 
-// JavaScript for Opening and Closing the Modal
+// Definitions for all variables used in the program
 const modal = document.getElementById("playListModal");
 const span = document.getElementsByClassName("close")[0];
+let searchBar =  document.getElementById("search");
+let clear =  document.getElementById("clear");
+let searchButton =  document.getElementById("searchButton");
+let grid =  document.getElementById("playListGrid");
+let sortButton = document.getElementById("sort");
+let sortValue = document.getElementById("sortVals");
 let playListIDTrack;
 
-//method to open modal
-function openModal(playlist) {
-   document.getElementById('playListName').innerText = playlist.playlist_name;
-   document.getElementById('playListAuthor').innerText = "Made by " + playlist.playlist_author;
-   document.getElementById('playListImage').src = playlist.playlistArt;
-   for(const song in playlist.songs){
+//function to load all stored playlist when first loaded in
+document.addEventListener("DOMContentLoaded", () => {
+    loadPlaylists();
+});
+
+clear.addEventListener("click", function(){
+    searchBar.value = "";
+    if(!grid.innerHTML.includes('OG')){
+        grid.innerHTML = "";
+        loadPlaylists();
+    }
+
+})
+//functionality of searching
+function searchTiles(){
+    event.preventDefault();
+    const tiles = Array.from(document.getElementsByClassName('playList'));
+    grid.innerHTML = "";
+    const newTiles = [];
+    for(tile in tiles){
+            if(tiles[tile].innerHTML.includes(searchBar.value)){
+                grid.appendChild(tiles[tile]);
+            }
+    }
+}
+//Search submission functionality
+searchButton.addEventListener("click", function(){
+    event.preventDefault();
+    const tiles = Array.from(document.getElementsByClassName('playList'));
+    grid.innerHTML = "";
+    const newTiles = [];
+    for(tile in tiles){
+            if(tiles[tile].innerHTML.includes(searchBar.value)){
+                grid.appendChild(tiles[tile]);
+            }
+    }
+})
+//sort button functionality
+sortButton.addEventListener("click", function(){ 
+    event.preventDefault();
+    const tiles = Array.from(document.getElementsByClassName('playList'));
+    grid.innerHTML = "";
+    if(sortVals.value==="alphabet"){
+        console.log(sortVals.value);
+        tiles.sort((a,b) => {
+            const aName = a.querySelector(".playListName").innerHTML;
+            const bName = b.querySelector(".playListName").innerHTML;
+            if(aName < bName) return -1;
+            if(aName > bName) return 1;
+            return 0;
+        });
+    }else if(sortVals.value==="likes"){
+        console.log(sortVals.value);
+        tiles.sort((a,b) => {
+            const aName = a.querySelector(".likes").innerHTML;
+            const bName = b.querySelector(".likes").innerHTML;
+            if(aName > bName) return -1;
+            if(aName < bName) return 1;
+            return 0;
+        });
+    }else if(sortVals.value="date"){
+        tiles.sort((a,b) => {
+            const aName = a.querySelector(".ID").innerHTML;
+            const bName = b.querySelector(".ID").innerHTML;
+            if(aName < bName) return -1;
+            if(aName > bName) return 1;
+            return 0;
+        });
+    }
+    for(tile in tiles){
+        grid.appendChild(tiles[tile]);
+    }
+
+})
+
+//populate songs function
+function populateSongs(songs){
+    for(const song in songs){
+        //defines a newSong and appends it to the end of songs
         const newSong = document.createElement('div');
         newSong.className = "modalSong"
         newSong.innerHTML = `<div class="modalSongImgContainer">
-                            <img width="75x" height="75x" src="${playlist.songs[song][0]}" class="songImage">
+                            <img width="75x" height="75x" src="${songs[song][0]}" class="songImage">
                         </div>
                         <div class="songDetails">
-                            <h3>${playlist.songs[song][1]}</h3>
-                            <p>${playlist.songs[song][2]}</p>
-                            <p>${playlist.songs[song][3]}</p>
-                            <p>${playlist.songs[song][4]}</p>
+                            <h3>${songs[song][1]}</h3>
+                            <p>${songs[song][2]}</p>
+                            <p>${songs[song][3]}</p>
+                            <p>${songs[song][4]}</p>
                         </div>`
         document.getElementById('songs').appendChild(newSong);
     }
+}
+
+//Method to Open Modal, will pass in playlst and data including songs
+function openModal(playlist) {
+    //sets modal content values
+   document.getElementById('playListName').innerText = playlist.playlist_name;
+   document.getElementById('playListAuthor').innerText = "Made by " + playlist.playlist_author;
+   document.getElementById('playListImage').src = playlist.playlistArt;
+
+   //will populate all of the songs
+   populateSongs(playlist.songs);
+
    document.getElementById("shuffle").addEventListener("click", () => {
-        shuffle(playlist.songs);
-        console.log(playlist.songs[1])
-        document.getElementById('songs').innerHTML="";
-        for(const song in playlist.songs){
-            const newSong = document.createElement('div');
-            newSong.className = "modalSong"
-            newSong.innerHTML = `<div class="modalSongImgContainer">
-                                <img width="75x" height="75x" src="${playlist.songs[song][0]}" class="songImage">
-                            </div>
-                            <div class="songDetails">
-                                <h3>${playlist.songs[song][1]}</h3>
-                                <p>${playlist.songs[song][2]}</p>
-                                <p>${playlist.songs[song][3]}</p>
-                                <p>${playlist.songs[song][4]}</p>
-                            </div>`
-            document.getElementById('songs').appendChild(newSong);
+        for(let i = 0; i <playlist.songs.length; i++){
+            let j = Math.floor(Math.random() * (i + 1));
+            var temp = playlist.songs[i];
+            playlist.songs[i] = playlist.songs[j];
+            playlist.songs[j] = temp;
         }
+        document.getElementById('songs').innerHTML="";
+        populateSongs(playlist.songs);
     });
    modal.style.display = "flex";
 }
 
-//close modal
+//close modal functionality
 span.onclick = function() {
    modal.style.display = "none";
    document.getElementById('songs').innerHTML = "";
-
 }
 //close modal outside of zone
 window.onclick = function(event) {
@@ -59,17 +140,14 @@ window.onclick = function(event) {
    }
 }
 
+//function to just stop propogation, used in text boxes
 const stopProp = (event) => {
-    event.stopPropagation();
-}
-
-const editPlaylistAuthor = (event) => {
-    console.log("hello");
     event.stopPropagation();
 }
 
 //Code to create playlist
 const createPlaylist = (playlist) => {
+    //will create all new playList object values
     const playlistElement = document.createElement('div');
     playlistElement.className = 'playList';
     playlistElement.style.width = "25%";
@@ -101,7 +179,7 @@ const createPlaylist = (playlist) => {
         <p class = "likes" style = "color: ${playlist.likesColor}">&#x2665  <span class = "likeCount">${playlist.likes}</span></p>
     </div>`
     ;
-
+    //defines the change name funcitonality
     let changeName = playlistElement.querySelector(".changeName");
     changeName.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -109,7 +187,7 @@ const createPlaylist = (playlist) => {
         let editName =  playlistElement.querySelector(".editName");
         playlistElement.querySelector(".playListName").innerHTML = editName.value;
     })
-
+    //defines the new author functionality
     let changeAuthor = playlistElement.querySelector(".changeAuthor");
     changeAuthor.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -117,7 +195,7 @@ const createPlaylist = (playlist) => {
         let editAuthor =  playlistElement.querySelector(".editAuthor");
         playlistElement.querySelector(".playListAuthor").innerHTML = "Created by " + editAuthor.value;
     })
-
+    //defines the delete button for the Playlist
     let deleteButton = playlistElement.querySelector(".exit");
     deleteButton.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -126,9 +204,9 @@ const createPlaylist = (playlist) => {
     return playlistElement;
 }
 
+//will load all initial playlists
 const loadPlaylists = () =>{
     const container = document.querySelector('#playListGrid');
-
     let og = document.createElement('p');
     og.style.display='none';
     og.innerHTML = "OG"
@@ -168,15 +246,7 @@ const loadPlaylists = () =>{
 
 }
 
-function shuffle(songs){
-    for(let i = 0; i <songs.length; i++){
-        let j = Math.floor(Math.random() * (i + 1));
-        var temp = songs[i];
-        songs[i] = songs[j];
-        songs[j] = temp;
-    }
-}
-
+//handles submission of a new song and adds it to the array
 const handleSongSubmit = (event) =>{
     event.preventDefault();
     const songName = document.querySelector('#songName');
@@ -198,8 +268,8 @@ const handleSongSubmit = (event) =>{
                     </div>`
     document.getElementById('songs').appendChild(newSong);
 }
-
-const handleReviewSubmit = (event) =>{
+//funciton to submit a new Playlist
+const handlePlaylistSubmit = (event) =>{
     event.preventDefault();
 
     const playListName = document.querySelector('#newPlaylistTitle');
@@ -238,87 +308,3 @@ const handleReviewSubmit = (event) =>{
     const reviewList = document.querySelector('#playListGrid');
     reviewList.appendChild(newPlaylist);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    loadPlaylists();
-});
-
-
-
-//Clear Button Functionality
-let searchBar =  document.getElementById("search");
-let clear =  document.getElementById("clear");
-let searchButton =  document.getElementById("searchButton");
-let grid =  document.getElementById("playListGrid");
-let sortButton = document.getElementById("sort");
-let sortValue = document.getElementById("sortVals");
-
-clear.addEventListener("click", function(){
-    searchBar.value = "";
-    if(!grid.innerHTML.includes('OG')){
-        grid.innerHTML = "";
-        loadPlaylists();
-    }
-
-})
-
-function searchTiles(){
-    event.preventDefault();
-    const tiles = Array.from(document.getElementsByClassName('playList'));
-    grid.innerHTML = "";
-    const newTiles = [];
-    for(tile in tiles){
-            if(tiles[tile].innerHTML.includes(searchBar.value)){
-                grid.appendChild(tiles[tile]);
-            }
-    }
-}
-
-searchButton.addEventListener("click", function(){
-    event.preventDefault();
-    const tiles = Array.from(document.getElementsByClassName('playList'));
-    grid.innerHTML = "";
-    const newTiles = [];
-    for(tile in tiles){
-            if(tiles[tile].innerHTML.includes(searchBar.value)){
-                grid.appendChild(tiles[tile]);
-            }
-    }
-})
-
-sortButton.addEventListener("click", function(){ 
-    event.preventDefault();
-    const tiles = Array.from(document.getElementsByClassName('playList'));
-    grid.innerHTML = "";
-    if(sortVals.value==="alphabet"){
-        console.log(sortVals.value);
-        tiles.sort((a,b) => {
-            const aName = a.querySelector(".playListName").innerHTML;
-            const bName = b.querySelector(".playListName").innerHTML;
-            if(aName < bName) return -1;
-            if(aName > bName) return 1;
-            return 0;
-        });
-    }else if(sortVals.value==="likes"){
-        console.log(sortVals.value);
-        tiles.sort((a,b) => {
-            const aName = a.querySelector(".likes").innerHTML;
-            const bName = b.querySelector(".likes").innerHTML;
-            if(aName > bName) return -1;
-            if(aName < bName) return 1;
-            return 0;
-        });
-    }else if(sortVals.value="date"){
-        tiles.sort((a,b) => {
-            const aName = a.querySelector(".ID").innerHTML;
-            const bName = b.querySelector(".ID").innerHTML;
-            if(aName < bName) return -1;
-            if(aName > bName) return 1;
-            return 0;
-        });
-    }
-    for(tile in tiles){
-        grid.appendChild(tiles[tile]);
-    }
-
-})
