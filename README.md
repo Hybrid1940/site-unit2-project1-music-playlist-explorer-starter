@@ -4,9 +4,9 @@
 
 Submitted by: **Mahesh Bachu**
 
-Estimated time spent: **#** hours spent in total
+Estimated time spent: **20** hours spent in total
 
-Deployed Application (**required**): [Music Playlist Explorer Deployed Site](ADD_LINK_HERE)
+Deployed Application (**required**): [Music Playlist Explorer Deployed Site](https://mahesh-bachu-music-player.onrender.com/)
 
 ### Application Features
 
@@ -132,9 +132,14 @@ Deployed Application (**required**): [Music Playlist Explorer Deployed Site](ADD
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video actually renders and is playable when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+<div>
+    <a href="https://www.loom.com/share/501bbab44ca54166b865fc54af7d35b0">
+      <p>Project 1 Video - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/501bbab44ca54166b865fc54af7d35b0">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/501bbab44ca54166b865fc54af7d35b0-b650a516e0d69d72-full-play.gif">
+    </a>
+  </div>
 
 ### Reflection
 
@@ -147,8 +152,8 @@ Completing the sort was a bit difficult, since we went over map, filter, and sor
 I might have added in the edit song feature. since it said "some or all" of the edit functions needed to be done I focused on other things and hoped to get the points off of the 2 I had implimented.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
+It was actually pretty difficult to record. I eventually just ended up looking at all of the requirements and pausing for every piece I wanted to demo. We got there eventually though :)
 
-My project demo we
 
 ### Open-source libraries used
 
